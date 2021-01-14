@@ -20,16 +20,36 @@ btn.addEventListener("click", () => {
     ourRequest.send();
     pageCounter++;
 
-    if(pageCounter > 3){
-        btn.classList.add("hidden")
+    if (pageCounter > 3) {
+        btn.classList.add("hidden");
     }
 })
 
-function renderHTML(data){
+function renderHTML(data) {
     var htmlString = ""
 
-    for(i = 0; i < data.length; i++){
-        htmlString += "<p>" + data[i].name + " is a " + data[i].species + ".</p>"
+    for (i = 0; i < data.length; i++) {
+        htmlString += "<p>" + data[i].name + " is a " + data[i].species + " that likes to eat "
+
+        for (k = 0; k < data[i].foods.likes.length; k++) {
+            if (k != 0) {
+                htmlString += " and "
+            }
+            htmlString += data[i].foods.likes[k]
+
+        }
+        
+         htmlString += " and dislikes "
+
+         for (k = 0; k < data[i].foods.dislikes.length; k++) {
+            if (k != 0) {
+                htmlString += " and "
+            }
+            htmlString += data[i].foods.dislikes[k]
+
+        }
+
+        htmlString += ".</p>"
     }
 
     // for insertAdjacentHTML
