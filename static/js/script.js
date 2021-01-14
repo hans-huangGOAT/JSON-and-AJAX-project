@@ -1,3 +1,4 @@
+var pageCounter = 1;
 var animalContainer = document.querySelector("#animal-info")
 var btn = document.getElementById("btn")
 btn.addEventListener("click", () => {
@@ -8,7 +9,7 @@ btn.addEventListener("click", () => {
     1. whether we want to send data or to get data ( GET or POST )
     2. the url we want to talk to 
     */
-    ourRequest.open('GET', "https://learnwebcode.github.io/json-example/animals-1.json");
+    ourRequest.open('GET', `https://learnwebcode.github.io/json-example/animals-${pageCounter}.json`);
 
     // this method is responsible for what should happen is the data is loaded
     ourRequest.onload = () => {
@@ -17,6 +18,11 @@ btn.addEventListener("click", () => {
     };
 
     ourRequest.send();
+    pageCounter++;
+
+    if(pageCounter > 3){
+        btn.classList.add("hidden")
+    }
 })
 
 function renderHTML(data){
